@@ -34,4 +34,31 @@ class mojWatek implements Runnable
     }
 }
 public class Main {
+    public static void main(String[] args)
+    {
+        System.out.println("Moj watek startuje.");
+
+        //najpierw tworzymy obiekt typu mojWatek
+        mojWatek mw = new mojWatek("Watek1");
+        //tworzenie obiektu z zaimplementowanym interfejsem Runnable
+
+        //nastepnie tworzymy watek z tego obiektu
+        Thread nowyWatek = new Thread(mw);
+
+        nowyWatek.start(); //poczatek wykonywania sie watku
+
+        do
+        {
+            try
+            {
+                Thread.sleep(100); //zawieszenie watku na 100 milisekund
+            }
+            catch(InterruptedException exc)
+            {
+                System.out.println("Glowny watek zostal przerwany.");
+            }
+        } while (mw.licznik != 10);
+
+        System.out.println("Glowny watek zostal zakonczony.");
+    }
 }
